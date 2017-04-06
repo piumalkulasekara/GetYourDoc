@@ -7,13 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.widget.EditText;
-import android.database.sqlite.SQLiteDatabase;
-
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -97,7 +90,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
         startActivity(intent);
 
     }
-
-
 
 }

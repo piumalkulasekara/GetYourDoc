@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="10dp"
+              android:background="@drawable/b">
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/lblEditAppointmentTitle"
+              android:layout_gravity="center"
+              android:padding="10dp"
+              android:text="@string/edit_appointment_label"
+              android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+
+    <TextView
+            android:id="@+id/appointment_title_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/appointment_title_label"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+            android:id="@+id/appointment_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text">
+
+        <requestFocus/>
+    </EditText>
+
+    <TextView
+            android:id="@+id/appointment_time_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/appointment_time_label"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+            android:id="@+id/appointment_time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="time"/>
+
+    <TextView
+            android:id="@+id/appointment_details_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/appointment_details_label"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+            android:id="@+id/appointment_details_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.28"
+            android:ems="10"
+            android:inputType="textMultiLine"/>
+
+    <Button
+            android:id="@+id/edit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/edit_appointment_label"/>
+</LinearLayout>
