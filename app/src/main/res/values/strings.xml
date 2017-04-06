@@ -7,5 +7,25 @@
     <string name="lblMove_Appointment">Move Appointments</string>
     <string name="lblSearch_Appointment">Search Appointments</string>
     <string name="lblTranslate_Appointment">Translate</string>
+    <string name="appointment_title_label">Appointment Event Title</string>
+    <string name="appointment_time_label">Appointment Time</string>
+    <string name="appointment_details_label">Appointment Details</string>
+    <string name="error_label">Error</string>
+    <string name="delete_all_appointments_label">Delete all apointments</string>
+    <string name="select_appointment_to_delete_label">Select appointment to delete</string>
+    <string name="edit_appointment_label">Edit Appointment!</string>
+    <string name="move_selected_label">Move selected appointment</string>
+    <string name="title_activity_translation_of_appointment">TranslationOfAppointment</string>
+    <string name="from_Label">From</string>
+    <string name="to_Label">To</string>
+    <string name="details_Label">Details</string>
+    <string name="translation_error">(Translation error)</string>
+    <string name="view_appointment_label">View Appointment</string>
+    <string name="appointment_date_label">Date</string>
+    <string name="save_translation_label">Save Translation</string>
+    <string name="manage_languages_label">Manage Languages</string>
+    <string name="select_language_Label">Select Language</string>
+    <string name="add_language_label">Add Language</string>
+    <string name="remove_language_label">Remove Language</string>
 
 </resources>
