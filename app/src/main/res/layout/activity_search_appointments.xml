@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/b"
+              android:padding="10dp"
+              android:id="@+id/seach_appointment_linear_layout">
+
+    <TextView
+            android:id="@+id/seach_appointment_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="@string/lblSearch_Appointment"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+            android:id="@+id/search_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    <Button
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/lblSearch_Appointment"/>
+
+    <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    </ListView>
+
+
+</LinearLayout>
