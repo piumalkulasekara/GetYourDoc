@@ -1,7 +1,9 @@
 package com.example.piumal.getyourdoc;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -92,11 +94,37 @@ public class CreateAppointment extends Activity implements View.OnClickListener 
 
                     /*Displays if the data saved successfully*/
                     Toast.makeText(this,"Data Saved Successfully", Toast.LENGTH_LONG).show();
+                    finish();
+
+                } else {
+                    /*
+                    * if there is an appointment with the same date and the
+                    * title and error will occure
+                    * */
+                    AlertDialog.Builder errorAlerDialog = new AlertDialog.Builder(CreateAppointment.this);
+                    errorAlerDialog.setTitle(R.string.error_label);
+                    errorAlerDialog.setMessage("Error: 2 Appointments for a day with Same Name");
+                    errorAlerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    errorAlerDialog.show();
+                    titleEditText.setText(null);
                 }
 
             }catch (Exception e){
+                Toast.makeText(this, "Exception: " + e.toString(), Toast.LENGTH_LONG).show();
 
             }
+
+
+        } else {
+            /*
+            * displays if the no data are entered before saving
+            * */
+            Toast.makeText(this, "Enter Details fo the given fileds befor you save.", Toast.LENGTH_LONG).show();
 
         }
     }
