@@ -15,6 +15,48 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name="com.example.piumal.getyourdoc.CreateAppointment"
+                android:label="@string/lblCreatAppointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.DeleteAppointment"
+                android:label="@string/lblDelete_Appointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.ViewOrEditAppointment"
+                android:label="@string/lblView_Edit_Appointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.EditAppointment"
+                android:label="@string/edit_appointment_label">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.MoveAppointment"
+                android:label="@string/lblMove_Appointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.TranslateAppointment"
+                android:label="@string/lblTranslate_Appointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.TranslationOfAppointment"
+                android:label="@string/title_activity_translation_of_appointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.SearchAppointment"
+                android:label="@string/lblSearch_Appointment">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.ViewAppointment"
+                android:label="@string/view_appointment_label">
+        </activity>
+        <activity
+                android:name="com.example.piumal.getyourdoc.SelectLanguages"
+                android:label="@string/select_language_Label">
+        </activity>
+
     </application>
 
 </manifest>
