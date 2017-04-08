@@ -2,15 +2,24 @@ package com.example.piumal.getyourdoc;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.GregorianCalendar;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import android.view.Menu;
 
+import java.util.Date;
+
 public class MainActivity extends Activity implements View.OnClickListener {
     private CalendarView dateCv;
+    private long dateString;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +47,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
         searchAppointmentsButton.setOnClickListener(this);
 
         dateCv = (CalendarView) findViewById(R.id.calendar_view);
+
+        dateCv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Toast.makeText(getBaseContext(), "Selected Date is " + dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        dateCv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+//            @Override
+//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+//
+//                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//                    String dateSelected = simpleDateFormat.format(new GregorianCalendar(year,month,dayOfMonth).getTime());
+//                    dateString= Long.parseLong(dateSelected);
+//                    dateCv.setDate(dateString);
+//                    Toast.makeText(getBaseContext(), dateSelected, Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        String dateSelected = simpleDateFormat.format(new Date(dateCv.getDate()));
+//        dateString= Long.parseLong(dateSelected);
+//        dateCv.setDate(dateString);
+
 
     }
 

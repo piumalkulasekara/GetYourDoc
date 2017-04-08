@@ -14,8 +14,7 @@ public class Controller {
     /*
      * search from the database for the given values and returns a Cursor object
      */
-    public Cursor getAppointment(AppointmentsData appointments, String[] from,
-                                 String where, String orderby) {
+    public Cursor getAppointment(AppointmentsData appointments, String[] from, String where, String orderby) {
         SQLiteDatabase db = appointments.getReadableDatabase();
         Cursor cursor = null;
         try {

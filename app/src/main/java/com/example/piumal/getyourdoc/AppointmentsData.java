@@ -1,5 +1,6 @@
 package com.example.piumal.getyourdoc;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,6 +15,7 @@ public class AppointmentsData extends SQLiteOpenHelper {
     private static final int DATABSE_VERSION = 1;
 
     public AppointmentsData(Context ctx) {
+
         super(ctx, DATABASE_NAME, null, DATABSE_VERSION);
     }
 
@@ -30,5 +32,20 @@ public class AppointmentsData extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
+        onCreate(db);
     }
+
+
+    public void addDates(Context ctx) {
+        ContentValues values = new ContentValues();
+
+        values.put("SELECTED_DATE", DATE);
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_NAME, null, values);
+        db.close();
+    }
+
+
 }

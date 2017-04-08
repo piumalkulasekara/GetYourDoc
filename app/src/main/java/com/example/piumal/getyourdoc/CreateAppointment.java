@@ -36,14 +36,11 @@ public class CreateAppointment extends Activity implements View.OnClickListener 
         controller = new Controller();
 
         Bundle bundle = getIntent().getExtras();
-        /*
-		 * get the selected date from the previous activity
-		 */
+
+        /*get the selected date from the previous activity*/
         date = bundle.getLong("SELECTED_DATE");
 
-		/*
-         * getting the views
-		 */
+		/*getting the views*/
         titleEt = (EditText) findViewById(R.id.appointment_title_text);
         timeEt = (EditText) findViewById(R.id.appointment_time_text);
         detailsEt = (EditText) findViewById(R.id.appointment_details_text);
@@ -134,9 +131,7 @@ public class CreateAppointment extends Activity implements View.OnClickListener 
             /*
 			 * displays if the no data are entered before saving
 			 */
-            Toast.makeText(
-                    this,
-                    "Enter details for the given fields before you save the data",
+            Toast.makeText(this, "Enter details for the given fields before you save the data",
                     Toast.LENGTH_LONG).show();
         }
     }
