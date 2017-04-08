@@ -8,63 +8,62 @@
 
 
     <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
         <TableRow>
 
             <TextView
-                    android:text="@string/from_Label"
-                    android:textSize="20sp"/>
+                android:text="@string/from_Label"
+                android:textSize="20sp" />
 
             <Spinner
-                    android:id="@+id/from_language"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                android:id="@+id/from_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TextView
-                android:id="@+id/from_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp">
+            android:id="@+id/from_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp">
         </TextView>
 
         <TableRow>
 
             <TextView
-                    android:text="@string/to_Label"
-                    android:textSize="20sp"/>
+                android:text="@string/to_Label"
+                android:textSize="20sp" />
 
             <Spinner
-                    android:id="@+id/to_language"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                android:id="@+id/to_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <Button
-                android:id="@+id/translation_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lblTranslate_Appointment"/>
+            android:id="@+id/translation_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/translate_appointment_label" />
 
         <TextView
-                android:id="@+id/translated_label"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:textSize="20sp"/>
+            android:id="@+id/translated_label"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:textSize="20sp" />
 
         <Button
-                android:id="@+id/save_translation_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save_translation_label"/>
+            android:id="@+id/save_translation_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_translation_label" />
 
         <Button
-                android:id="@+id/manage_languages_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/manage_languages_label"/>
+            android:id="@+id/manage_languages_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manage_languages_label" />
     </TableLayout>
-
 </LinearLayout>

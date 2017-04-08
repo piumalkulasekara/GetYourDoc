@@ -1,16 +1,24 @@
 package com.example.piumal.getyourdoc;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.content.SharedPreferences.Editor;
 import android.view.Menu;
 import android.view.View;
-import android.widget.*;
-
-import java.util.HashSet;
-import java.util.Set;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * Created by piumal on 4/8/17.
@@ -47,7 +55,7 @@ public class SelectLanguages extends Activity implements View.OnClickListener {
         arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_1);
         listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View v, int position,
@@ -89,7 +97,7 @@ public class SelectLanguages extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        SharedPreferences.Editor editor = preference.edit();
+        Editor editor = preference.edit();
         editor.putStringSet("LANGUAGE", selectedLanguages);
         editor.commit();
 

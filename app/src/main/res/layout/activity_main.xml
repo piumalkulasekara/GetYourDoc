@@ -8,46 +8,52 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-    <!--Add Calander View-->
     <CalendarView
-            android:layout_width="match_parent"
-            android:id="@+id/calander_view" android:layout_height="300dp"/>
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
-    <!--Add Create Appointment Button-->
-    <Button android:layout_width="match_parent"
-            android:id="@+id/btnCreate_Appoinment"
-            android:text="@string/lblCreate_Appointment"
-            android:textSize="17sp" android:layout_height="60dp"/>
+    <Button
+        android:id="@+id/create_appointment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_appointment_label"
+        android:textSize="17sp" />
 
-    <!--Add Appointment Button-->
-    <Button android:layout_width="match_parent"
-            android:id="@+id/btnView_Edit_Appointment"
-            android:text="@string/lblView_Edit_Appointment"
-            android:textSize="17sp" android:layout_height="60dp"/>
+    <Button
+        android:id="@+id/view_edit_appointments_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_edit_appointments_label"
+        android:textSize="17sp" />
 
-    <!--Add Delete Appointment Button-->
-    <Button android:layout_width="match_parent"
-            android:id="@+id/btnDelete_Appointment"
-            android:text="@string/lblDelete_Appointment"
-            android:textSize="17sp" android:layout_height="60dp"/>
+    <Button
+        android:id="@+id/delete_appointment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_appointment_label"
+        android:textSize="17sp" />
 
-    <!--Add Move Appointment Button-->
-    <Button android:layout_width="match_parent"
-            android:id="@+id/btnMove_Appointment"
-            android:textSize="17sp"
-            android:text="@string/lblMove_Appointment" android:layout_height="60dp"/>
+    <Button
+        android:id="@+id/move_appointment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/move_appointment_label"
+        android:textSize="17sp" />
 
-    <!--Add Search Appointment Button-->
-    <Button android:layout_width="match_parent" android:layout_height="60dp"
-            android:id="@+id/btnSearch_Appointment"
-            android:text="@string/lblSearch_Appointment"
-            android:textSize="17sp"/>
+    <Button
+        android:id="@+id/search_appointment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search_appointment_label"
+        android:textSize="17sp" />
 
-    <!--Add Translate Appointment Button-->
-    <Button android:layout_width="match_parent" android:layout_height="60dp"
-            android:id="@+id/btnTranslate_Appointment"
-            android:textSize="17sp"
-            android:text="@string/lblTranslate_Appointment"/>
+    <Button
+        android:id="@+id/translate_appointment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/translate_appointment_label"
+        android:textSize="17sp" />
 
 
 </LinearLayout>

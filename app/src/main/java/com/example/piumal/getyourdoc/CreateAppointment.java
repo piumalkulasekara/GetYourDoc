@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,13 +19,12 @@ import static com.example.piumal.getyourdoc.Constants.*;
  * Created by piumal on 4/5/17.
  */
 public class CreateAppointment extends Activity implements View.OnClickListener {
-
     private static String[] FROM = {DATE, TITLE};
-    private EditText titleEditText;
-    private EditText timeEditText;
-    private EditText detailsEditText;
-    private Button btnSave;
-    public AppointmentsData appointmentsData;
+    private EditText titleEt;
+    private EditText timeEt;
+    private EditText detailsEt;
+    private Button saveButton;
+    public AppointmentsData appointments;
     private long date;
     private Controller controller;
 
@@ -33,48 +33,52 @@ public class CreateAppointment extends Activity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_appointment);
 
-        controller= new Controller();
+        controller = new Controller();
 
         Bundle bundle = getIntent().getExtras();
-
         /*
-        * get the selected date from the previous activity
-        * */
-        date =bundle.getLong("SELECTED_DATE");
+		 * get the selected date from the previous activity
+		 */
+        date = bundle.getLong("SELECTED_DATE");
 
-        /*
-        * getting the view
-        * */
-        timeEditText = (EditText) findViewById(R.id.appointment_title_text);
-        timeEditText = (EditText) findViewById(R.id.appointment_time_text);
-        detailsEditText = (EditText) findViewById(R.id.appointment_details_text);
-        btnSave = (Button) findViewById(R.id.save_button);
-        btnSave.setOnClickListener(this);
+		/*
+         * getting the views
+		 */
+        titleEt = (EditText) findViewById(R.id.appointment_title_text);
+        timeEt = (EditText) findViewById(R.id.appointment_time_text);
+        detailsEt = (EditText) findViewById(R.id.appointment_details_text);
+        saveButton = (Button) findViewById(R.id.save_button);
 
-        appointmentsData = new AppointmentsData(this);
+        saveButton.setOnClickListener(this);
 
+        appointments = new AppointmentsData(this);
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.save_button:
-                addAppointment();
-                break;
-        }
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.create_appointment, menu);
+        return true;
     }
 
-    private void addAppointment() {
-        String title = titleEditText.getText().toString();
-        String time = timeEditText.getText().toString();
-        String details = detailsEditText.getText().toString();
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.save_button:
+                addAppointent();
+                break;
+        }
+    }
 
+    private void addAppointent() {
+        String title = titleEt.getText().toString();
+        String time = timeEt.getText().toString();
+        String details = detailsEt.getText().toString();
 
-        //Check whether data entered in the text fields are not null
-        if(!title.equals("") && !time.equals("") && !details.equals("")){
-            //Getting the writable database.
-            SQLiteDatabase db = appointmentsData.getWritableDatabase();
+        // checks whether data entered in the text fields are not null
+        if (!title.equals("") && !time.equals("") && !details.equals("")) {
+            // getting the writable database
+            SQLiteDatabase db = appointments.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             values.put(DATE, date + "");
@@ -82,50 +86,58 @@ public class CreateAppointment extends Activity implements View.OnClickListener 
             values.put(TIME, time);
             values.put(DETAILS, details);
 
-            Cursor cursor = controller.getAppointment(appointmentsData, FROM, "DATE="+ date+ " AND TITLE="+title+"", null);
+            Cursor cursor = controller.getAppointment(appointments, FROM,
+                    "DATE='" + date + "' AND TITLE='" + title + "'", null);
 
             try {
                 /*
-                * Check whethe there is another appointment
-                * with the same date and title
-                * */
-                if(cursor.getCount()==0){
-                    db.insertOrThrow(TABLE_NAME, null,values);
-
-                    /*Displays if the data saved successfully*/
-                    Toast.makeText(this,"Data Saved Successfully", Toast.LENGTH_LONG).show();
+				 * checks whether there is an another appointment with the same
+				 * data and title
+				 */
+                if (cursor.getCount() == 0) {
+                    db.insertOrThrow(TABLE_NAME, null, values);
+					/*
+					 * displays if the data saved successfully
+					 */
+                    Toast.makeText(this, "Data saved successfully",
+                            Toast.LENGTH_LONG).show();
                     finish();
 
                 } else {
                     /*
-                    * if there is an appointment with the same date and the
-                    * title and error will occure
-                    * */
-                    AlertDialog.Builder errorAlerDialog = new AlertDialog.Builder(CreateAppointment.this);
-                    errorAlerDialog.setTitle(R.string.error_label);
-                    errorAlerDialog.setMessage("Error: 2 Appointments for a day with Same Name");
-                    errorAlerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+					 * if there is an appointment with the same date and the
+					 * title an error is prompt
+					 */
+                    AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
+                            CreateAppointment.this);
+                    myAlertDialog.setTitle(R.string.error_label);
 
-                        }
-                    });
-                    errorAlerDialog.show();
-                    titleEditText.setText(null);
+                    myAlertDialog
+                            .setMessage("There cannot be 2 appointments for a day with the same name");
+                    myAlertDialog.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface arg0,
+                                                    int arg1) {
+
+                                }
+                            });
+
+                    myAlertDialog.show();
+                    titleEt.setText(null);
                 }
-
-            }catch (Exception e){
-                Toast.makeText(this, "Exception: " + e.toString(), Toast.LENGTH_LONG).show();
-
+            } catch (Exception e) {
+                Toast.makeText(this, "Exception: " + e.toString(),
+                        Toast.LENGTH_LONG).show();
             }
-
-
         } else {
             /*
-            * displays if the no data are entered before saving
-            * */
-            Toast.makeText(this, "Enter Details fo the given fileds befor you save.", Toast.LENGTH_LONG).show();
-
+			 * displays if the no data are entered before saving
+			 */
+            Toast.makeText(
+                    this,
+                    "Enter details for the given fields before you save the data",
+                    Toast.LENGTH_LONG).show();
         }
     }
 }

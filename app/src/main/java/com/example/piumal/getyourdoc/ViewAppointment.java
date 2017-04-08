@@ -1,16 +1,18 @@
 package com.example.piumal.getyourdoc;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.widget.TextView;
-
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by piumal on 4/7/17.
  */
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.TextView;
+
 public class ViewAppointment extends Activity {
     private long date;
     private String title;
@@ -55,3 +57,4 @@ public class ViewAppointment extends Activity {
         return true;
     }
 }
+

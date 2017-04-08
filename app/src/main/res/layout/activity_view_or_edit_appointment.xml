@@ -4,21 +4,19 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="10dp">
-
     <TextView
-            android:id="@+id/view_edit_appointment_title_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:text="@string/lblView_Edit_Appointment"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:id="@+id/view_edit_appointment_title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/view_edit_appointments_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     </ListView>
-
 
 </LinearLayout>

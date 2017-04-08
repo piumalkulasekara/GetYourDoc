@@ -1,27 +1,28 @@
 package com.example.piumal.getyourdoc;
 
+/**
+ * Created by piumal on 4/4/17.
+ */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import static com.example.piumal.getyourdoc.Constants.*;
 
-/**
- * Created by piumal on 4/5/17.
- */
 public class TranslateAppointment extends Activity {
     private AppointmentsData appointments;
     private static String[] FROM = {DATE, TITLE, TIME, DETAILS};
@@ -53,7 +54,6 @@ public class TranslateAppointment extends Activity {
         return true;
     }
 
-
     private void setAppointmentsToListView() {
         // setting the appointments to the list view
         listView.setAdapter(null);
@@ -61,55 +61,68 @@ public class TranslateAppointment extends Activity {
                 + date + "'", TIME);
         appointmentsArray = new ArrayList<String>();
 
-
-        /*Until there are cursors*/
+		/*
+         * until there are cursors
+		 */
         while (cursor.moveToNext()) {
             String title = cursor.getString(1);
             String time = cursor.getString(2);
 
-            //Adding the values to appointments array
-            appointmentsArray.add(appointmentsArray.size() + 1 + "." + time + " " + title);
-            final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, appointmentsArray);
+			/*
+             * adding the values to appointments array
+			 */
+            appointmentsArray.add(appointmentsArray.size() + 1 + "." + time
+                    + " " + title);
+
+            final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                    android.R.layout.simple_list_item_1, appointmentsArray);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
                 @Override
-                public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
-                    final String string = parent.getItemAtPosition(position).toString();
+                public void onItemClick(final AdapterView<?> parent,
+                                        final View view, final int position, long id) {
 
-                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(TranslateAppointment.this);
-                    alertBuilder.setTitle("Confirm to translate appointpointme");
+                    final String string = parent.getItemAtPosition(position)
+                            .toString();
 
-                    alertBuilder.setMessage("Would you prefer to chance the appointment?");
-                    alertBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(TranslateAppointment.this, TranslationOfAppointment.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("DATA", string);
-                            bundle.putLong("SELECTED_DATE", date);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        }
-                    });
+                    AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
+                            TranslateAppointment.this);
+                    myAlertDialog.setTitle("Confirm translate appointment");
 
-                    alertBuilder.setNegativeButton("No",
+                    myAlertDialog
+                            .setMessage("Would you like to translate appointmaent? ");
+                    myAlertDialog.setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0,
+                                                    int arg1) {
+                                    Intent intent = new Intent(
+                                            TranslateAppointment.this,
+                                            TranslationOfAppointment.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("DATA", string);
+                                    bundle.putLong("SELECTED_DATE", date);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                }
+                            });
+
+                    myAlertDialog.setNegativeButton("No",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0,
                                                     int arg1) {
                                 }
                             });
-                    alertBuilder.show();
-
+                    myAlertDialog.show();
                 }
             });
         }
     }
 
-
     /*
      * creates inner class to add data to the list view
-	 */
+     */
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
         HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();

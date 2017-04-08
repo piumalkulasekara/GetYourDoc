@@ -7,71 +7,70 @@
               android:padding="1dp">
 
     <TextView
-            android:id="@+id/view_appointment_title_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:text="@string/view_appointment_label"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:id="@+id/view_appointment_title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/view_appointment_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/appointment_title_label"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/appointment_title_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:id="@+id/appointment_title_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:id="@+id/appointment_title_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/appointment_date_label"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/appointment_date_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:id="@+id/appointment_date_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:id="@+id/appointment_date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/appointment_time_label"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/appointment_time_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:id="@+id/appointment_time_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:padding="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:id="@+id/appointment_time_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/appointment_details_label"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/appointment_details_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:id="@+id/appointment_details_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:padding="5dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
-
+        android:id="@+id/appointment_details_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

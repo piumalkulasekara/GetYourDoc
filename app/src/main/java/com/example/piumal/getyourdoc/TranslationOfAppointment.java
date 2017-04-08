@@ -1,20 +1,24 @@
 package com.example.piumal.getyourdoc;
 
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.widget.*;
+/**
+ * Created by piumal on 4/4/17.
+ */
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.StringReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -23,23 +27,32 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashSet;
-import java.util.Set;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import static android.content.ContentValues.TAG;
 import static com.example.piumal.getyourdoc.Constants.*;
 
-/**
- * Created by piumal on 4/7/17.
- */
-public class TranslationOfAppointment extends Activity implements
-        View.OnClickListener {
+public class TranslationOfAppointment extends Activity implements OnClickListener {
     private static final String TAG = "TranslateTask";
     private AppointmentsData appointments;
     private static String[] FROM = {DETAILS, TIME};
@@ -61,8 +74,8 @@ public class TranslationOfAppointment extends Activity implements
     private String toLang;
 
     private TextWatcher textWatcher;
-    private AdapterView.OnItemSelectedListener itemListener;
-    private View.OnClickListener buttonListener;
+    private OnItemSelectedListener itemListener;
+    private OnClickListener buttonListener;
 
     private String accessToken;
     private ArrayAdapter<CharSequence> adapter;
@@ -181,7 +194,7 @@ public class TranslationOfAppointment extends Activity implements
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
                 /*
-                 * doTranslate2(origText.getText().toString().trim(), fromLang,
+				 * doTranslate2(origText.getText().toString().trim(), fromLang,
 				 * toLang);
 				 */
             }
@@ -191,7 +204,7 @@ public class TranslationOfAppointment extends Activity implements
         };
         fromLabel.addTextChangedListener(textWatcher);
 
-        itemListener = new AdapterView.OnItemSelectedListener() {
+        itemListener = new OnItemSelectedListener() {
             public void onItemSelected(AdapterView parent, View v,
                                        int position, long id) {
                 fromLang = getLang(fromSpinner);
@@ -208,7 +221,7 @@ public class TranslationOfAppointment extends Activity implements
         fromSpinner.setOnItemSelectedListener(itemListener);
         toSpinner.setOnItemSelectedListener(itemListener);
 
-        buttonListener = new View.OnClickListener() {
+        buttonListener = new OnClickListener() {
             public void onClick(View v) {
                 if (accessToken != null)
                     doTranslate2(fromLabel.getText().toString().trim(),

@@ -1,27 +1,29 @@
 package com.example.piumal.getyourdoc;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
+
+/**
+ * Created by piumal on 4/5/17.
+ */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 
 import static com.example.piumal.getyourdoc.Constants.*;
 
-/**
- * Created by piumal on 4/5/17.
- */
 public class ViewOrEditAppointment extends Activity {
     private AppointmentsData appointments;
     private static String[] FROM = {DATE, TITLE, TIME, DETAILS};
@@ -146,4 +148,3 @@ public class ViewOrEditAppointment extends Activity {
         }
     }
 }
-
