@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GetYourDoc</string>
-    <string name="lblCreate_Appointment">Create Appointment</string>
     <string name="action_settings">Settings</string>
-    <string name="lblView_Edit_Appointment">View/Edit Appointments</string>
-    <string name="lblDelete_Appointment">Delete Appointment</string>
-    <string name="lblMove_Appointment">Move Appointments</string>
-    <string name="lblSearch_Appointment">Search Appointments</string>
-    <string name="lblTranslate_Appointment">Translate</string>
+    <string name="create_appointment_label">Create Appointment</string>
+    <string name="view_edit_appointments_label">View/Edit Appointments</string>
+    <string name="delete_appointment_label">Delete Appointment</string>
+    <string name="move_appointment_label">Move Appointment</string>
+    <string name="search_appointment_label">Search Appointment</string>
+    <string name="translate_appointment_label">Translate Appointment</string>
     <string name="appointment_title_label">Appointment Event Title</string>
     <string name="appointment_time_label">Appointment Time</string>
     <string name="appointment_details_label">Appointment Details</string>
@@ -27,5 +28,4 @@
     <string name="select_language_Label">Select Language</string>
     <string name="add_language_label">Add Language</string>
     <string name="remove_language_label">Remove Language</string>
-
 </resources>

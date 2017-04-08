@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/b">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:text="@string/select_language_Label"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/select_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <ListView
+            android:id="@+id/languages_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+        </ListView>
+
+        <Button
+            android:id="@+id/add_language_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_language_label" />
+
+        <Button
+            android:id="@+id/remove_language_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/remove_language_label" />
+    </TableLayout>
+
+
+</ScrollView>

@@ -7,27 +7,34 @@
               android:background="@drawable/b"
               android:padding="10dp">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/delete_appointment_title_label"
-              android:layout_gravity="center"
-              android:padding="10dp"
-              android:text="@string/lblDelete_Appointment"
-              android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:id="@+id/delete_appointment_title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/delete_appointment_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:id="@+id/btneDeleteAllAppointments"
-            android:padding="5dp"
-            android:text="@string/delete_all_appointments_label"/>
+    <Button
+        android:id="@+id/delete_all_appointments_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/delete_all_appointments_label" />
 
-    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:id="@+id/btnSelectAppointmenToDelete"
-            android:text="@string/select_appointment_to_delete_label"/>
+    <Button
+        android:id="@+id/select_appointment_to_delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/select_appointment_to_delete_label" />
 
-    <ListView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/list_view">
-
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     </ListView>
+
 
 </LinearLayout>

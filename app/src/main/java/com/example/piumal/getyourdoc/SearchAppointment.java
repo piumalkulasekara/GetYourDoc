@@ -44,11 +44,14 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
         controller = new Controller();
 
         Bundle bundle = getIntent().getExtras();
-
-		/* get the selected data from the previous activity*/
+        /*
+		 * get the selected data from the previous activity
+		 */
         date = bundle.getLong("SELECTED_DATE");
 
-		/*getting the views*/
+		/*
+         * getting the views
+		 */
         searchEt = (EditText) findViewById(R.id.search_text);
         listView = (ListView) findViewById(R.id.list_view);
         searchButton = (Button) findViewById(R.id.search_button);
@@ -71,16 +74,16 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
         }
     }
 
-
     /*
      * search appointment
      */
     private void searchAppointment() {
         listView.setAdapter(null);
-
         search = searchEt.getText().toString();
 
-        /*the searched appointments should have a future date*/
+		/*
+         * the searched appointment should have a future date
+		 */
         Cursor cursor = controller.getAppointment(appointments, FROM, "DATE>'"
                 + date + "'", null);
 
@@ -92,13 +95,18 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
             time = cursor.getString(2);
             details = cursor.getString(3);
 
-            /*search from both titles and the detaisl whether
-            *such appointment is available in the date to come in futue
-            * */
+			/*
+             * search from both title and the details whether such appointment
+			 * is available in the date to come in future
+			 */
             if (title.compareToIgnoreCase(search) == 0
                     || details.compareToIgnoreCase(search) == 0) {
                 appointmentsArray.add(appointmentsArray.size() + 1 + "." + time
                         + " " + title);
+
+                final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                        android.R.layout.simple_list_item_1, appointmentsArray);
+                listView.setAdapter(adapter);
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -121,9 +129,7 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
                                     public void onClick(DialogInterface arg0,
                                                         int arg1) {
 
-                                        Intent intent = new Intent(
-                                                SearchAppointment.this,
-                                                ViewAppointment.class);
+                                        Intent intent = new Intent(SearchAppointment.this, ViewAppointment.class);
                                         /*
 										 * taking the values form current
 										 * activity to the next activity
@@ -149,10 +155,13 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
                 });
             }
         }
-
     }
 
+    /*
+     * creates inner class to add data to the list view
+     */
     private class StableArrayAdapter extends ArrayAdapter<String> {
+
         HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
         public StableArrayAdapter(Context context, int textViewResourceId,
@@ -171,7 +180,6 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
 
         @Override
         public boolean hasStableIds() {
-
             return true;
         }
     }

@@ -38,64 +38,76 @@ public class EditAppointment extends Activity implements View.OnClickListener {
         controller = new Controller();
 
         Bundle bundle = getIntent().getExtras();
-
-        /*Get the selected data from the previuos activity*/
+        /*
+		 * get the selected data from the previous activity
+		 */
         data = bundle.getString("DATA");
-
-        /*Get the selected DATE from the previous activity*/
+        /*
+		 * get the selected date from the previous activity
+		 */
         date = bundle.getLong("SELECTED_DATE");
 
-        /*Getting the views*/
+		/*
+         * getting the views
+		 */
         titleEt = (EditText) findViewById(R.id.appointment_title_text);
         timeEt = (EditText) findViewById(R.id.appointment_time_text);
         detailsEt = (EditText) findViewById(R.id.appointment_details_text);
 
-        /*Getting the values*/
+		/*
+         * getting the values
+		 */
         title = data.substring(data.indexOf(':') + 4);
         time = data.substring(data.indexOf('.') + 1, data.indexOf(':') + 3);
 
-        /*Getting the appointment to edit*/
+		/*
+         * getting the appointment to edit
+		 */
         Cursor cursor = controller.getAppointment(appointments, FROM, "DATE='"
                 + date + "' AND TITLE='" + title + "'", null);
 
         if (cursor.moveToFirst()) {
             details = cursor.getString(0);
-
         }
 
         titleEt.setText(title);
         timeEt.setText(time);
         detailsEt.setText(details);
 
-        Button btnEdit = (Button) findViewById(R.id.edit_button);
-        btnEdit.setOnClickListener(this);
-
+        Button editButton = (Button) findViewById(R.id.edit_button);
+        editButton.setOnClickListener(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu: this adds items to the action bar is it's available default.
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.edit_appointment, menu);
         return true;
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.edit_button:
                 editAppointment();
                 break;
         }
     }
 
-    /*Edit selected appointments*/
+    /*
+     * edit selected appointment
+     */
     private void editAppointment() {
-        /*get the values for edit*/
+        /*
+		 * get the values for edit
+		 */
         String title = titleEt.getText().toString();
         String time = timeEt.getText().toString();
         String details = detailsEt.getText().toString();
 
-        /*if the values are not null*/
+		/*
+         * if the values are not null
+		 */
         if (!title.equals("") && !time.equals("") && !details.equals("")) {
             SQLiteDatabase db = appointments.getWritableDatabase();
 
@@ -107,21 +119,23 @@ public class EditAppointment extends Activity implements View.OnClickListener {
             values.put(DETAILS, details);
 
             try {
-                /*update selectes appointment int to the database*/
+                /*
+				 * update selected appointment in to the database
+				 */
                 db.update(TABLE_NAME, values, "DATE='" + date + "' AND TITLE='"
                         + title + "'", null);
-                Toast.makeText(this, "Data edited successfully", Toast.LENGTH_LONG).show();
-
-
+                Toast.makeText(this, "Data edited successfully",
+                        Toast.LENGTH_LONG).show();
             } catch (Exception e) {
-                Toast.makeText(this, "Exception: " + e.toString(), Toast.LENGTH_LONG).show();
-
+                Toast.makeText(this, "Exception: " + e.toString(),
+                        Toast.LENGTH_LONG).show();
             }
             finish();
         } else {
-            Toast.makeText(this, "Complete the fields beforr you edit the data", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(
+                    this,
+                    "Enter details for the given fields before you edit the data",
+                    Toast.LENGTH_LONG).show();
         }
-
     }
 }

@@ -22,12 +22,11 @@ import static com.example.piumal.getyourdoc.Constants.*;
  * Created by piumal on 4/5/17.
  */
 public class DeleteAppointment extends Activity implements View.OnClickListener {
-
     private AppointmentsData appointments;
     private static String[] FROM = {DATE, TITLE, TIME, DETAILS};
     private long date;
     private ListView listView;
-    private ArrayList<String> appointmentArray;
+    private ArrayList<String> appointmentsArray;
     private SQLiteDatabase db;
     private Controller controller;
 
@@ -41,38 +40,36 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
 
         Bundle bundle = getIntent().getExtras();
         /*
-        * get the selected date from the previous activity
-        */
+		 * get the selected date from the previous activity
+		 */
         date = bundle.getLong("SELECTED_DATE");
 
-        /*
-        * getting the views
-        * */
-        Button btnDeleteAllAppointments = (Button) findViewById(R.id.btneDeleteAllAppointments);
-        btnDeleteAllAppointments.setOnClickListener(this);
+		/*
+         * getting the views
+		 */
+        Button deleteAllAppointmentsButton = (Button) findViewById(R.id.delete_all_appointments_button);
+        deleteAllAppointmentsButton.setOnClickListener(this);
 
-        Button btnDeleteSelectedAppointments = (Button) findViewById(R.id.btnSelectAppointmenToDelete);
-        btnDeleteSelectedAppointments.setOnClickListener(this);
+        Button selectAppointmentToDeleteButton = (Button) findViewById(R.id.select_appointment_to_delete_button);
+        selectAppointmentToDeleteButton.setOnClickListener(this);
 
         listView = (ListView) findViewById(R.id.list_view);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu: this adds items to the action bar if its available
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.delete_appointments, menu);
         return true;
     }
 
     @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-            case R.id.btneDeleteAllAppointments:
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.delete_all_appointments_button:
                 deleteAppointment("DATE='" + date + "'");
                 break;
-            case R.id.btnSelectAppointmenToDelete:
+            case R.id.select_appointment_to_delete_button:
                 setAppointmentsToListView();
                 break;
         }
@@ -80,47 +77,56 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
 
     private void setAppointmentsToListView() {
         listView.setAdapter(null);
-
         Cursor cursor = controller.getAppointment(appointments, FROM, "DATE='"
                 + date + "'", TIME);
-        appointmentArray = new ArrayList<String>();
+        appointmentsArray = new ArrayList<String>();
 
-
-
-        /*untill there are cursors*/
+		/*
+         * until there are cursors
+		 */
         while (cursor.moveToNext()) {
             String title = cursor.getString(1);
             String time = cursor.getString(2);
 
-            /*adding the values to appointments array*/
-            appointmentArray.add(appointmentArray.size() + 1 + "." + time + " " + title);
+			/*
+             * adding the values to appointments array
+			 */
+            appointmentsArray.add(appointmentsArray.size() + 1 + "." + time
+                    + " " + title);
 
-            final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, appointmentArray);
+            final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                    android.R.layout.simple_list_item_1, appointmentsArray);
             listView.setAdapter(adapter);
 
-            /*
-            * List make prompt to confirm deletion
-            * */
+			/*
+             * clicking on the list make a prompt to confirm deletion
+			 */
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
                 @Override
-                public void onItemClick(final AdapterView<?> parent, final View view, final int postion, long id) {
-                    final String string = parent.getItemAtPosition(postion).toString();
+                public void onItemClick(final AdapterView<?> parent,
+                                        final View view, final int position, long id) {
 
-                    String titleST = string.substring(string.indexOf(':') + 4);
+                    final String string = parent.getItemAtPosition(position)
+                            .toString();
+                    String titleSt = string.substring(string.indexOf(':') + 4);
 
-                    AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(DeleteAppointment.this);
+                    AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
+                            DeleteAppointment.this);
                     myAlertDialog.setTitle("Confirm delete appointment");
-                    myAlertDialog.setMessage("Would you like to delete event: \'" + titleST + "\"? ");
 
+                    myAlertDialog
+                            .setMessage("Would you like to delete event: \""
+                                    + titleSt + "\"? ");
                     myAlertDialog.setPositiveButton("Yes",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0,
                                                     int arg1) {
                                     final String string = parent
-                                            .getItemAtPosition(postion)
+                                            .getItemAtPosition(position)
                                             .toString();
                                     /*
-                                     * getting the title of the selected
+									 * getting the title of the selected
 									 * appointment
 									 */
                                     String titleSt = string.substring(string
@@ -140,49 +146,55 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
                                 }
                             });
                     myAlertDialog.show();
-
                 }
             });
         }
     }
 
-    /*Delete appointment from the database*/
+    /*
+     * delete the appointment from the database
+     */
     private int deleteAppointment(String where) {
         db = appointments.getReadableDatabase();
         int i = 0;
-
         try {
-            /*Delete appointment query*/
-
+            /*
+			 * delete appointment query
+			 */
             i = db.delete(TABLE_NAME, where, null);
             if (where.equals("DATE='" + date + "'")) {
-                /*Delete every appointment for the selected date*/
-                Toast.makeText(this, "All the appointments for selected date are deleted", Toast.LENGTH_LONG).show();
-
+                /*
+				 * delete every appointment for the selected date
+				 */
+                Toast.makeText(this,
+                        "All the apoinments for the selected date are deleted",
+                        Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Selected appointments deleted successfully", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(this,
+                        "Selected appointment deleted successfully",
+                        Toast.LENGTH_LONG).show();
             }
-
         } catch (Exception e) {
-            Toast.makeText(this, "Exception: " + e.toString(), Toast.LENGTH_LONG).show();
-
+            Toast.makeText(this, "Exception: " + e.toString(),
+                    Toast.LENGTH_LONG).show();
         }
-
-        /*Adding the appointments to the list View*/
+        /*
+		 * adding the appointments to the list view
+		 */
         setAppointmentsToListView();
         return i;
     }
 
-    /*Creates Inner Class to add data to the list view*/
+    /*
+     * creates inner class to add data to the list view
+     */
+    private class StableArrayAdapter extends ArrayAdapter<String> {
 
-    public class StableArrayAdapter extends ArrayAdapter<String> {
+        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
-        HashMap<String, Integer> mIdMap = new HashMap<>();
-
-        public StableArrayAdapter(Context context, int textViewResourceID, List<String> objects) {
-            super(context, textViewResourceID, objects);
-
+        public StableArrayAdapter(Context context, int textViewResourceId,
+                                  List<String> objects) {
+            super(context, textViewResourceId, objects);
             for (int i = 0; i < objects.size(); ++i) {
                 mIdMap.put(objects.get(i), i);
             }
@@ -199,4 +211,6 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
             return true;
         }
     }
-}//End of the class
+
+}
+

@@ -9,19 +9,22 @@ import static com.example.piumal.getyourdoc.Constants.TABLE_NAME;
 /**
  * Created by piumal on 4/4/17.
  */
+
 public class Controller {
-
-    public Cursor getAppointment(AppointmentsData appointmentsData, String[] from, String where, String orderby) {
-        SQLiteDatabase db = appointmentsData.getReadableDatabase();
+    /*
+     * search from the database for the given values and returns a Cursor object
+     */
+    public Cursor getAppointment(AppointmentsData appointments, String[] from,
+                                 String where, String orderby) {
+        SQLiteDatabase db = appointments.getReadableDatabase();
         Cursor cursor = null;
-
         try {
-            //Condition to get the values.
-            cursor = db.query(TABLE_NAME, from, null, null, "DATE, TITLE", where, orderby);
-
+            // condition to get the values
+            cursor = db.query(TABLE_NAME, from, null, null, "DATE, TITLE",
+                    where, orderby);
         } catch (Exception e) {
-            Toast.makeText(null, "SQL database is unreadable", Toast.LENGTH_SHORT).show();;
         }
         return cursor;
     }
 }
+

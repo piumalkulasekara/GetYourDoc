@@ -8,30 +8,31 @@
               android:padding="10dp">
 
     <TextView
-            android:id="@+id/move_appointment_title_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="@string/lblMove_Appointment"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:id="@+id/move_appointment_title_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="@string/move_appointment_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
     </ListView>
 
     <CalendarView
-            android:id="@+id/new_calendar_view"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:visibility="invisible"/>
+        android:id="@+id/new_calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="invisible" />
 
     <Button
-            android:id="@+id/move_selected_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/move_selected_label"/>
+        android:id="@+id/move_selected_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/move_selected_label" />
+
 </LinearLayout>

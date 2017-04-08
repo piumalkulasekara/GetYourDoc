@@ -1,17 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/b"
-              android:orientation="vertical"
-              android:padding="10dp" >
+              android:padding="1dp">
 
     <TextView
-        android:id="@+id/create_appointment_title_label"
+        android:id="@+id/view_appointment_title_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:text="@string/create_appointment_label"
+        android:text="@string/view_appointment_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/appointment_title_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -19,53 +27,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="@string/appointment_title_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/appointment_title_text"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text">
-
-        <requestFocus />
-    </EditText>
+        android:padding="5dp"
+        android:text="@string/appointment_date_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/appointment_time_label"
+        android:id="@+id/appointment_date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/appointment_time_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/appointment_time_text"
+    <TextView
+        android:id="@+id/appointment_time_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="time" />
+        android:padding="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/appointment_details_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/appointment_details_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/appointment_details_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.28"
-        android:ems="10"
-        android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/save_button"
+    <TextView
+        android:id="@+id/appointment_details_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ems="10"
         android:padding="5dp"
-        android:text="@string/create_appointment_label" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </LinearLayout>

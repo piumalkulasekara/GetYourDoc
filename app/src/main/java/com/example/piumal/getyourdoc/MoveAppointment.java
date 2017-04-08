@@ -43,38 +43,39 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
         appointments = new AppointmentsData(this);
 
         Bundle bundle = getIntent().getExtras();
-
-        /*get the selected data from previous activity*/
+        /*
+		 * get the selected data from the previous activity
+		 */
         date = bundle.getLong("SELECTED_DATE");
 
-        /*Getting the vies*/
-        Button btnMove = (Button) findViewById(R.id.btnMove_Appointment);
-        btnMove.setOnClickListener(this);
+		/*
+         * getting the views
+		 */
+        Button moveButton = (Button) findViewById(R.id.move_selected_button);
+        moveButton.setOnClickListener(this);
 
         listView = (ListView) findViewById(R.id.list_view);
 
         newCalendarView = (CalendarView) findViewById(R.id.new_calendar_view);
 
         setAppointmentsToListView();
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu: this adds items to the action bar if it's available
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.move_appointments, menu);
         return true;
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.move_selected_button:
                 confirmMoveAppointment();
                 break;
         }
     }
-
 
     private void setAppointmentsToListView() {
         listView.setAdapter(null);
@@ -84,12 +85,16 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
 
         appointmentsArray = new ArrayList<String>();
 
-        /*until there are cursors*/
+		/*
+         * until there are cursors
+		 */
         while (cursor.moveToNext()) {
             final String title = cursor.getString(1);
             String time = cursor.getString(2);
 
-            /*Adding the values to appointments array*/
+			/*
+             * adding the values to appointments array
+			 */
             appointmentsArray.add(appointmentsArray.size() + 1 + "." + time
                     + " " + title);
 
@@ -99,14 +104,15 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
-                    String string = parent.getItemAtPosition(position).toString();
+                public void onItemClick(final AdapterView<?> parent,
+                                        final View view, final int position, long id) {
 
+                    String string = parent.getItemAtPosition(position)
+                            .toString();
                     String newTitle = string.substring(string.indexOf(':') + 4);
                     setTitle(newTitle);
-                    newCalendarView.setVisibility(0);
-
-
+                    //0 FOR VISIBALE
+                    newCalendarView.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -116,52 +122,68 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
         title = newTitle;
     }
 
-    /*Confirm moving the appointment*/
+    /*
+     * confirm moving the appointment
+     */
     private void confirmMoveAppointment() {
-        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(MoveAppointment.this);
-        myAlertDialog.setTitle("Confirm Move Appointment");
-        myAlertDialog.setMessage("Would you like to move selected appointment? ");
-        myAlertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                moveAppointment();
-            }
-        });
-        myAlertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(
+                MoveAppointment.this);
+        myAlertDialog.setTitle("Confirm move appointment");
 
-            }
-        });
+        myAlertDialog
+                .setMessage("Would you like to move selected appointment? ");
+        myAlertDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        moveAppointment();
+                    }
+                });
+
+        myAlertDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                });
         myAlertDialog.show();
     }
 
+    /*
+     * moving the appointment to the selected date
+     */
     private void moveAppointment() {
-        /*get selected appointment which want to move*/
-        Cursor cursor = controller.getAppointment(appointments, FROM, "DATE='" + date + "' AND TITLE='" + title + "'", null);
+        /*
+		 * get the selected appointment which want to move
+		 */
+        Cursor cursor = controller.getAppointment(appointments, FROM, "DATE='"
+                + date + "' AND TITLE='" + title + "'", null);
 
         if (cursor.moveToFirst()) {
             newDate = newCalendarView.getDate();
             title = cursor.getString(1);
         }
+
         SQLiteDatabase db = appointments.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+
         values.put(DATE, newDate + "");
 
-
-        /*get the appointment to update*/
+		/*
+         * get the appointment to update
+		 */
         Cursor cursor1 = controller.getAppointment(appointments, FROM, "DATE='"
                 + newDate + "' AND TITLE='" + title + "'", null);
         if (cursor1.getCount() == 0) {
             try {
-                /*Update the database*/
+                /*
+				 * update in the database
+				 */
                 db.update(TABLE_NAME, values, "DATE='" + date + "' AND TITLE='"
                         + title + "'", null);
                 Toast.makeText(this, "Appointment moved sucessfully.",
                         Toast.LENGTH_LONG).show();
                 setAppointmentsToListView();
-                newCalendarView.setVisibility(-1);
+                newCalendarView.setVisibility(View.INVISIBLE);
             } catch (Exception e) {
                 Toast.makeText(this, "Exception: " + e.toString(),
                         Toast.LENGTH_LONG).show();
@@ -175,7 +197,9 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
         }
     }
 
-    /*Inner class to add data to the list view*/
+    /*
+     * creates inner class to add data to the list view
+     */
     private class StableArrayAdapter extends ArrayAdapter<String> {
 
         HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();

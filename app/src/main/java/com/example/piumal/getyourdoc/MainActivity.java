@@ -9,40 +9,35 @@ import android.widget.*;
 import android.view.Menu;
 
 public class MainActivity extends Activity implements View.OnClickListener {
-
-    private CalendarView dateCV;
+    private CalendarView dateCv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     /*
-      * Getting the Views
-      */
-        Button btnCreateAppointment = (Button) findViewById(R.id.btnCreate_Appoinment);
-        btnCreateAppointment.setOnClickListener(this);
+		/*
+         * getting the views
+		 */
+        Button createAppointmentButton = (Button) findViewById(R.id.create_appointment_button);
+        createAppointmentButton.setOnClickListener(this);
 
+        Button deleteAppointmentButton = (Button) findViewById(R.id.delete_appointment_button);
+        deleteAppointmentButton.setOnClickListener(this);
 
-        Button btnDeleteAppointment = (Button) findViewById(R.id.btnDelete_Appointment);
-        btnDeleteAppointment.setOnClickListener(this);
+        Button viewOrEditAppointmentsButton = (Button) findViewById(R.id.view_edit_appointments_button);
+        viewOrEditAppointmentsButton.setOnClickListener(this);
 
+        Button moveAppointmaentsButton = (Button) findViewById(R.id.move_appointment_button);
+        moveAppointmaentsButton.setOnClickListener(this);
 
-        Button btnViewOrEditAppointment = (Button) findViewById(R.id.btnView_Edit_Appointment);
-        btnViewOrEditAppointment.setOnClickListener(this);
+        Button translateAppointmentsButton = (Button) findViewById(R.id.translate_appointment_button);
+        translateAppointmentsButton.setOnClickListener(this);
 
+        Button searchAppointmentsButton = (Button) findViewById(R.id.search_appointment_button);
+        searchAppointmentsButton.setOnClickListener(this);
 
-        Button btnMoveAppointment = (Button) findViewById(R.id.btnMove_Appointment);
-        btnMoveAppointment.setOnClickListener(this);
-
-        Button btnTranslateAppointment = (Button) findViewById(R.id.btnTranslate_Appointment);
-        btnTranslateAppointment.setOnClickListener(this);
-
-
-        Button btnSearchAppointment = (Button) findViewById(R.id.btnSearch_Appointment);
-        btnSearchAppointment.setOnClickListener(this);
-
-        dateCV = (CalendarView) findViewById(R.id.calander_view);
+        dateCv = (CalendarView) findViewById(R.id.calendar_view);
 
     }
 
@@ -53,42 +48,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return true;
     }
 
-
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnCreate_Appoinment:
-                startActivity(CreateAppointment.class, dateCV.getDate());
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.create_appointment_button:
+                startActivity(CreateAppointment.class, dateCv.getDate());
                 break;
-            case R.id.btnDelete_Appointment:
-                startActivity(DeleteAppointment.class, dateCV.getDate());
+            case R.id.delete_appointment_button:
+                startActivity(DeleteAppointment.class, dateCv.getDate());
                 break;
-            case R.id.btnMove_Appointment:
-                startActivity(MoveAppointment.class, dateCV.getDate());
+            case R.id.view_edit_appointments_button:
+                startActivity(ViewOrEditAppointment.class, dateCv.getDate());
                 break;
-            case R.id.btnView_Edit_Appointment:
-                startActivity(ViewOrEditAppointment.class, dateCV.getDate());
+            case R.id.move_appointment_button:
+                startActivity(MoveAppointment.class, dateCv.getDate());
                 break;
-            case R.id.btnTranslate_Appointment:
-                startActivity(TranslateAppointment.class, dateCV.getDate());
+            case R.id.translate_appointment_button:
+                startActivity(TranslateAppointment.class, dateCv.getDate());
                 break;
-            case R.id.btnSearch_Appointment:
-                startActivity(SearchAppointment.class, dateCV.getDate());
+            case R.id.search_appointment_button:
+                long currentDate = System.currentTimeMillis();
+                startActivity(SearchAppointment.class, currentDate);
                 break;
         }
-
     }
 
     /*
-    * Starts new Activities
-    * */
+     * starts new activity
+     */
     private void startActivity(Class c, long i) {
         Intent intent = new Intent(MainActivity.this, c);
         Bundle bundle = new Bundle();
         bundle.putLong("SELECTED_DATE", i);
         intent.putExtras(bundle);
         startActivity(intent);
-
     }
-
 }
