@@ -80,13 +80,12 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
     private void setAppointmentsToListView() {
         listView.setAdapter(null);
 
-        Cursor cursor = controller.getAppointment(appointments, FROM, "DATE='"
-                + date + "'", TIME);
+        Cursor cursor = controller.getAppointment(appointments, FROM, "DATE='" + date + "'", TIME);
 
         appointmentsArray = new ArrayList<String>();
 
 		/*
-         * until there are cursors
+         * until there are cursors availble
 		 */
         while (cursor.moveToNext()) {
             final String title = cursor.getString(1);
@@ -95,11 +94,9 @@ public class MoveAppointment extends Activity implements View.OnClickListener {
 			/*
              * adding the values to appointments array
 			 */
-            appointmentsArray.add(appointmentsArray.size() + 1 + "." + time
-                    + " " + title);
+            appointmentsArray.add(appointmentsArray.size() + 1 + "." + time + " " + title);
 
-            final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, appointmentsArray);
+            final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, appointmentsArray);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

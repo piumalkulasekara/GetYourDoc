@@ -9,6 +9,7 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -44,14 +45,14 @@
             android:name="com.example.piumal.getyourdoc.MoveAppointment"
             android:label="@string/move_appointment_label">
         </activity>
-        <activity
-            android:name="com.example.piumal.getyourdoc.TranslateAppointment"
-            android:label="@string/translate_appointment_label">
-        </activity>
-        <activity
-            android:name="com.example.piumal.getyourdoc.TranslationOfAppointment"
-            android:label="@string/title_activity_translation_of_appointment">
-        </activity>
+        <!--<activity-->
+            <!--android:name="com.example.piumal.getyourdoc.TranslateAppointment"-->
+            <!--android:label="@string/translate_appointment_label">-->
+        <!--</activity>-->
+        <!--<activity-->
+            <!--android:name="com.example.piumal.getyourdoc.TranslationOfAppointment"-->
+            <!--android:label="@string/title_activity_translation_of_appointment">-->
+        <!--</activity>-->
         <activity
             android:name="com.example.piumal.getyourdoc.SearchAppointment"
             android:label="@string/search_appointment_label">

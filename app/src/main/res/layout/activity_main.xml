@@ -3,8 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/b"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -48,12 +48,12 @@
         android:text="@string/search_appointment_label"
         android:textSize="17sp" />
 
-    <Button
-        android:id="@+id/translate_appointment_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/translate_appointment_label"
-        android:textSize="17sp" />
+    <!--<Button-->
+        <!--android:id="@+id/translate_appointment_button"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/translate_appointment_label"-->
+        <!--android:textSize="17sp" />-->
 
 
 </LinearLayout>

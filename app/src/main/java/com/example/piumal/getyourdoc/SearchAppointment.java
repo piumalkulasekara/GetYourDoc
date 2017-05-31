@@ -9,19 +9,26 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.example.piumal.getyourdoc.Constants.*;
+import static com.example.piumal.getyourdoc.Constants.DATE;
+import static com.example.piumal.getyourdoc.Constants.DETAILS;
+import static com.example.piumal.getyourdoc.Constants.TIME;
+import static com.example.piumal.getyourdoc.Constants.TITLE;
 
 /**
  * Created by piumal on 4/5/17.
  */
 public class SearchAppointment extends Activity implements View.OnClickListener {
-    private static String[] FROM = {DATE, TITLE, TIME, DETAILS};
+    private static String[] FROM = { DATE, TITLE, TIME, DETAILS };
     private AppointmentsData appointments;
     private long date;
     private long newDate;
@@ -44,13 +51,13 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
         controller = new Controller();
 
         Bundle bundle = getIntent().getExtras();
-        /*
+		/*
 		 * get the selected data from the previous activity
 		 */
         date = bundle.getLong("SELECTED_DATE");
 
 		/*
-         * getting the views
+		 * getting the views
 		 */
         searchEt = (EditText) findViewById(R.id.search_text);
         listView = (ListView) findViewById(R.id.list_view);
@@ -82,7 +89,7 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
         search = searchEt.getText().toString();
 
 		/*
-         * the searched appointment should have a future date
+		 * the searched appointment should have a future date
 		 */
         Cursor cursor = controller.getAppointment(appointments, FROM, "DATE>'"
                 + date + "'", null);
@@ -96,7 +103,7 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
             details = cursor.getString(3);
 
 			/*
-             * search from both title and the details whether such appointment
+			 * search from both title and the details whether such appointment
 			 * is available in the date to come in future
 			 */
             if (title.compareToIgnoreCase(search) == 0
@@ -129,8 +136,10 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
                                     public void onClick(DialogInterface arg0,
                                                         int arg1) {
 
-                                        Intent intent = new Intent(SearchAppointment.this, ViewAppointment.class);
-                                        /*
+                                        Intent intent = new Intent(
+                                                SearchAppointment.this,
+                                                ViewAppointment.class);
+										/*
 										 * taking the values form current
 										 * activity to the next activity
 										 */
@@ -184,4 +193,5 @@ public class SearchAppointment extends Activity implements View.OnClickListener 
         }
     }
 }
+
 

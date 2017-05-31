@@ -8,6 +8,9 @@
     <string name="move_appointment_label">Move Appointment</string>
     <string name="search_appointment_label">Search Appointment</string>
     <string name="translate_appointment_label">Translate Appointment</string>
+    <string name="thesaurus_appointment_label">Thesauruses</string>
+    <string name="thesaurus_check_button_label">Check Thesaurus</string>
+
     <string name="appointment_title_label">Appointment Event Title</string>
     <string name="appointment_time_label">Appointment Time</string>
     <string name="appointment_details_label">Appointment Details</string>

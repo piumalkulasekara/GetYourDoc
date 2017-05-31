@@ -21,4 +21,14 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <!--Style for popup-->
+    <style name="popup_list_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">@dimen/activity_popup_V_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_popup_H_margin</item>
+        <item name="android:paddingRight">@dimen/activity_popup_H_margin</item>
+    </style>
+
 </resources>

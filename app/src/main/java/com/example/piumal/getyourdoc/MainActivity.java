@@ -2,18 +2,15 @@ package com.example.piumal.getyourdoc;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.GregorianCalendar;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
 import android.view.Menu;
-
-import java.util.Date;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private CalendarView dateCv;
@@ -40,8 +37,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Button moveAppointmaentsButton = (Button) findViewById(R.id.move_appointment_button);
         moveAppointmaentsButton.setOnClickListener(this);
 
-        Button translateAppointmentsButton = (Button) findViewById(R.id.translate_appointment_button);
-        translateAppointmentsButton.setOnClickListener(this);
+//        Button translateAppointmentsButton = (Button) findViewById(R.id.translate_appointment_button);
+//        translateAppointmentsButton.setOnClickListener(this);
 
         Button searchAppointmentsButton = (Button) findViewById(R.id.search_appointment_button);
         searchAppointmentsButton.setOnClickListener(this);
@@ -97,9 +94,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.move_appointment_button:
                 startActivity(MoveAppointment.class, dateCv.getDate());
                 break;
-            case R.id.translate_appointment_button:
-                startActivity(TranslateAppointment.class, dateCv.getDate());
-                break;
+
+
+//            case R.id.translate_appointment_button:
+//                startActivity(TranslateAppointment.class, dateCv.getDate());
+//                break;
             case R.id.search_appointment_button:
                 long currentDate = System.currentTimeMillis();
                 startActivity(SearchAppointment.class, currentDate);
