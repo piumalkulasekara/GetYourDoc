@@ -1,43 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:orientation="vertical"
-        android:padding="10dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <CalendarView
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:paddingBottom="10dp" />
 
     <Button
         android:id="@+id/create_appointment_button"
+        style="@style/button_style1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:text="@string/create_appointment_label"
         android:textSize="17sp" />
 
-    <Button
-        android:id="@+id/view_edit_appointments_button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/view_edit_appointments_label"
-        android:textSize="17sp" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/delete_appointment_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_appointment_label"
-        android:textSize="17sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/view_edit_appointments_button"
+                style="@style/button_style2"
+                android:layout_width="168dp"
+                android:layout_height="60dp"
+                android:text="@string/view_edit_appointments_label"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/delete_appointment_button"
+                style="@style/button_style2"
+                android:layout_width="175dp"
+                android:layout_height="60dp"
+                android:text="@string/delete_appointment_label"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/move_appointment_button"
+        style="@style/button_style3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:text="@string/move_appointment_label"
         android:textSize="17sp" />
 
@@ -49,11 +73,11 @@
         android:textSize="17sp" />
 
     <!--<Button-->
-        <!--android:id="@+id/translate_appointment_button"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/translate_appointment_label"-->
-        <!--android:textSize="17sp" />-->
+    <!--android:id="@+id/translate_appointment_button"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/translate_appointment_label"-->
+    <!--android:textSize="17sp" />-->
 
 
 </LinearLayout>

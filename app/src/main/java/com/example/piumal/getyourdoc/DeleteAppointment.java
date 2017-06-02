@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
@@ -115,11 +116,8 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
                             DeleteAppointment.this);
                     myAlertDialog.setTitle("Confirm delete appointment");
 
-                    myAlertDialog
-                            .setMessage("Would you like to delete event: \""
-                                    + titleSt + "\"? ");
-                    myAlertDialog.setPositiveButton("Yes",
-                            new DialogInterface.OnClickListener() {
+                    myAlertDialog.setMessage("Would you like to delete event: \""+ titleSt + "\"? ");
+                    myAlertDialog.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0,
                                                     int arg1) {
                                     final String string = parent
@@ -136,6 +134,7 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
 									 */
                                     deleteAppointment("TITLE='" + titleSt
                                             + "' AND DATE='" + date + "'");
+
                                 }
                             });
 
@@ -148,6 +147,7 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
                     myAlertDialog.show();
                 }
             });
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -155,7 +155,7 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
      * delete the appointment from the database
      */
     private int deleteAppointment(String where) {
-        db = appointments.getReadableDatabase();
+        db = appointments.getWritableDatabase();
         int i = 0;
         try {
             /*
@@ -169,14 +169,19 @@ public class DeleteAppointment extends Activity implements View.OnClickListener 
                 Toast.makeText(this,
                         "All the apoinments for the selected date are deleted",
                         Toast.LENGTH_LONG).show();
+                Log.d("Results-Appointment","Selected-Deleted");
             } else {
                 Toast.makeText(this,
                         "Selected appointment deleted successfully",
                         Toast.LENGTH_LONG).show();
+
+                Log.d("Results-Appointment","All-Deleted");
             }
         } catch (Exception e) {
             Toast.makeText(this, "Exception: " + e.toString(),
                     Toast.LENGTH_LONG).show();
+
+            Log.d("Results-Appointment","Selected-Deleted");
         }
         /*
 		 * adding the appointments to the list view

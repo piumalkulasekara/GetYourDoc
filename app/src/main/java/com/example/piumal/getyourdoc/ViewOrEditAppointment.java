@@ -71,8 +71,8 @@ public class ViewOrEditAppointment extends Activity {
 			/*
              * adding the values to appointments array
 			 */
-            appointmentsArray.add(appointmentsArray.size() + 1 + "." + time
-                    + " " + title);
+            appointmentsArray.add("["+appointmentsArray.size() + 1 + "]"+"." + time
+                    + title);
 
             final StableArrayAdapter adapter = new StableArrayAdapter(this,
                     android.R.layout.simple_list_item_1, appointmentsArray);
@@ -106,6 +106,7 @@ public class ViewOrEditAppointment extends Activity {
                                     bundle.putLong("SELECTED_DATE", date);
                                     intent.putExtras(bundle);
                                     startActivity(intent);
+
                                 }
                             });
 
@@ -118,6 +119,7 @@ public class ViewOrEditAppointment extends Activity {
                     myAlertDialog.show();
                 }
             });
+
         }
     }
 
